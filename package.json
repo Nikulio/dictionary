@@ -64,7 +64,7 @@
   },
   "scripts": {
     "start": "node src/server/index.js",
-    "build": "webpack --mode production --config config/webpack.prod.config.js --env.NODE_ENV=production --progress",
+    "build": "NODE_ENV=production BASE_URL=/api webpack --mode production --config config/webpack.prod.config.js --progress",
     "client": "webpack-dev-server --mode development --config config/webpack.base.config.js --open --hot --history-api-fallback",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
