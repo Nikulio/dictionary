@@ -6,10 +6,12 @@ const optimizationConfig = require('./webpack.opt.config');
 
 const productionConfiguration = function (env) {
 	const {NODE_ENV} = process.env;
-	console.log("--- 1", NODE_ENV);
 	return {
 		plugins: [
-			new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(NODE_ENV)}),
+			new webpack.DefinePlugin([
+				{'process.env.NODE_ENV': JSON.stringify(NODE_ENV)},
+				{'process.env.BASE_URL': JSON.stringify("/api")},
+				]),
 		]
 	};
 }
