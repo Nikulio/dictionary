@@ -1,7 +1,6 @@
 import axios from 'axios';
-console.log("--- 1", process.env.BASE_URL);
 const axiosInstance = axios.create({
-	baseURL: process.env.BASE_URL
+	baseURL: process.env.BASE_PROD_URL || process.env.BASE_URL
 });
 
 axiosInstance.interceptors.response.use(res => {

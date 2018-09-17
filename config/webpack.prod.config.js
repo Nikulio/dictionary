@@ -10,7 +10,7 @@ const productionConfiguration = function (env) {
 		plugins: [
 			new webpack.DefinePlugin([
 				{'process.env.NODE_ENV': JSON.stringify(NODE_ENV)},
-				{'process.env.BASE_URL': JSON.stringify("/api")},
+				{'process.env.BASE_PROD_URL': JSON.stringify("/api")},
 				]),
 		]
 	};
