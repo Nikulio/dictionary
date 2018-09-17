@@ -9,9 +9,8 @@ const productionConfiguration = function (env) {
 	return {
 		plugins: [
 			new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(NODE_ENV)}),
-			new webpack.DefinePlugin({'process.env.BASE_PROD_URL': JSON.stringify("/api")}),
 		]
 	};
-}
+};
 
 module.exports = merge.smart(baseConfig, optimizationConfig, productionConfiguration);

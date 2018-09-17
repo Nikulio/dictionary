@@ -54,7 +54,7 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin([outputDirectory]),
-		// new Dotenv(),
+		new Dotenv(),
 		new HtmlWebpackPlugin({
 			title: "Dictionary",
 			template: "./public/index.html",
@@ -62,6 +62,5 @@ module.exports = {
 		}),
 		new FEWP(),
 		new ExtractTextPlugin("style.css"),
-		new webpack.DefinePlugin({'process.env.BASE_URL': JSON.stringify("http://localhost:5000/api")}),
 	],
 };
