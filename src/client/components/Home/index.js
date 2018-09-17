@@ -9,19 +9,23 @@ import Divider from '@material-ui/core/Divider';
 import BookIcon from '@material-ui/icons/Book';
 import AddIcon from '@material-ui/icons/Add';
 import {Link} from "react-router-dom";
-
+import Typography from "@material-ui/core/Typography/Typography";
+import Paper from "@material-ui/core/Paper/Paper";
 import Words from "../Words";
 import {fetchAllWordsAction} from "../../actions";
+
 
 const styles = theme => ({
 	root: {
 		display: "block"
 	},
-	nav: {
+	wrapper: {
 		width: '100%',
 		margin: "20px auto",
 		maxWidth: 360,
-		backgroundColor: theme.palette.background.paper,
+	},
+	nav: {
+		backgroundColor: theme.palette.background.paper
 	},
 	link: {
 		display: "flex",
@@ -40,7 +44,7 @@ class Home extends Component {
 		const {classes, words} = this.props;
 		return (
 			<div className={classes.root}>
-				<List component="nav" className={classes.nav}>
+				<List component="nav" className={classes.wrapper}>
 					<ListItem button>
 						<Link to="/add-word" className={classes.link}>
 							<ListItemIcon>
@@ -59,6 +63,9 @@ class Home extends Component {
 						</Link>
 					</ListItem>
 				</List>
+				<Typography variant="title" align="center" className={classes.wrapper}>
+					Recent words:
+				</Typography>
 				<Words words={words}/>
 			</div>
 		);

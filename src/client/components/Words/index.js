@@ -55,9 +55,6 @@ class Words extends Component {
 			<div className={classes.root}>
 				{words.length > 0 ? (
 					<Paper className={classes.paper}>
-						<Typography className={classes.title} variant="title" align="center">
-							Recent words:
-						</Typography>
 						<Table className={classes.table}>
 							<TableHead>
 								<TableRow>

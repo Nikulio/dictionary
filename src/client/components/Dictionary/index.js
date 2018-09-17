@@ -1,8 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from "react-router-dom";
+import {withStyles} from '@material-ui/core/styles';
+
 import {fetchWordsByDictionary} from "../../actions";
 import Words from "../Words";
+import Typography from "@material-ui/core/Typography/Typography";
+import Paper from "@material-ui/core/Paper/Paper";
+
+
+const styles = theme => ({
+	title: {
+		marginBottom: theme.spacing.unit
+	}
+});
 
 class Dictionary extends Component {
 
@@ -12,9 +23,14 @@ class Dictionary extends Component {
 	}
 
 	render() {
-		const {words} = this.props
+		const {words, classes} = this.props;
 		return (
-			<Words words={words}/>
+			<div>
+				<Typography variant="title" align="center" className={classes.title}>
+					Words:
+				</Typography>
+				<Words words={words}/>
+			</div>
 		);
 	}
 }
@@ -27,5 +43,5 @@ function mapStateToProps(state) {
 
 export default withRouter(connect(
 	mapStateToProps,
-)(Dictionary));
+)(withStyles(styles)(Dictionary)));
 

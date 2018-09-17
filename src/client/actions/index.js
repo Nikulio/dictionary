@@ -1,9 +1,11 @@
 import * as types from "./types";
 import configAxios from "../config/axios";
+import history from "../config/history";
 
 export const addWordAction = (payload) => async dispatch => {
 	const res = await configAxios.post("/add-word", payload);
 	if (res.status === 200) {
+		history.push("/");
 		dispatch({
 			type: types.ADD_WORD_SUCCESS,
 			payload: res.data
