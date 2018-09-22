@@ -33,6 +33,11 @@ Router.route("/get-words-by-dict").post((req, res) => {
 	});
 });
 
+Router.route("/delete-word/:id").delete((req, res) => {
+	WordSchema.remove({_id: req.params.id}).then((data) => {
+		res.send(data);
+	});
+});
 
 
 // UserSchema.findOne({login: req.body.login}).then(user => {

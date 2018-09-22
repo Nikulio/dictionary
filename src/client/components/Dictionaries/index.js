@@ -26,7 +26,8 @@ const styles = theme => ({
 		display: "flex"
 	},
 	link: {
-		textDecoration: "none"
+		textDecoration: "none",
+		width: "100%"
 	},
 	paper: {
 		padding: theme.spacing.unit + "px"

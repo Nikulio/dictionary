@@ -29,6 +29,7 @@ const styles = theme => ({
 	},
 	link: {
 		display: "flex",
+		width: "100%",
 		textDecoration: "none"
 	}
 });

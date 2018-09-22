@@ -1,6 +1,7 @@
 import * as types from "./types";
 import configAxios from "../config/axios";
 import history from "../config/history";
+import {DELETE_WORD_SUCCESS} from "./types";
 
 export const addWordAction = (payload) => async dispatch => {
 	const res = await configAxios.post("/add-word", payload);
@@ -42,6 +43,22 @@ export const fetchWordsByDictionary = (dictionary) => async dispatch => {
 		})
 	}
 };
+
+export const deleteWordAction = payload => async dispatch => {
+	const res = await configAxios.delete(`/delete-word/${payload}`);
+	console.log("--- 123", res);
+	if (res.status === 200) {
+		const words = await configAxios.get("/get-words");
+		if (words.status === 200) {
+			dispatch({
+				type: types.GET_WORDS_SUCCESS,
+				payload: words.data
+			})
+		}
+	}
+};
+
+
 
 
 
