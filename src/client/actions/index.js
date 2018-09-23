@@ -58,6 +58,24 @@ export const deleteWordAction = payload => async dispatch => {
 	}
 };
 
+export const editWordAction = (data, id) => async dispatch => {
+	const res = await configAxios.put(`/update-word`, {
+		data: data,
+		id: id
+	});
+	if (res.status === 200) {
+		const words = await configAxios.get("/get-words");
+		if (words.status === 200) {
+			dispatch({
+				type: types.GET_WORDS_SUCCESS,
+				payload: words.data
+			})
+		}
+	}
+};
+
+
+
 
 
 

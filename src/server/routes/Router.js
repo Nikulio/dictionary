@@ -39,6 +39,17 @@ Router.route("/delete-word/:id").delete((req, res) => {
 	});
 });
 
+Router.route("/update-word").put((req, res) => {
+	WordSchema.findById(req.body.id).then(word => {
+		word.from = req.body.data.from;
+		word.language = req.body.data.language;
+		word.to = req.body.data.to;
+		word.save().then(updated => {
+			res.send(updated)
+		})
+	})
+});
+
 
 // UserSchema.findOne({login: req.body.login}).then(user => {
 // 	if (user === null) {

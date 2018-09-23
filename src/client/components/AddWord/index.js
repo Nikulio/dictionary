@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
-import {addWordAction} from "../../actions";
+import {addWordAction, editWordAction} from "../../actions";
 
 const styles = theme => ({
 	container: {
@@ -74,14 +74,19 @@ class AddWord extends Component {
 	};
 
 	submit = () => {
-		const {dispatch} = this.props;
-		dispatch(addWordAction(this.state));
+		const {dispatch, update, handleClose} = this.props;
+		if (update && update.length > 0) {
+			dispatch(editWordAction(this.state, update));
+			handleClose();
+		} else {
+			dispatch(addWordAction(this.state));
+		}
 		this.setState({
 			from: "",
 			language: "",
 			to: ""
 		});
-	}
+	};
 
 	render() {
 		const {classes} = this.props;

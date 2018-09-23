@@ -19,7 +19,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {Link} from "react-router-dom";
 
-import {deleteWordAction} from "../../actions";
+import AddWord from "../../components/AddWord";
+import {deleteWordAction, editWordAction} from "../../actions";
 import image from "../../../../images/not_found.jpg";
 
 const styles = theme => ({
@@ -49,12 +50,17 @@ const styles = theme => ({
 class Words extends Component {
 
 	state = {
-		headers: ["from", "language", "to"]
+		headers: ["from", "language", "to"],
+		editMode: false,
+		wordToEdit: ""
 	};
 
 	editHandle = (e, id) => {
-		e.preventDefault()
-		console.log("--- ", id);
+		e.preventDefault();
+		this.setState({
+			editMode: !this.state.editMode,
+			wordToEdit: id
+		});
 	};
 
 	deleteHandle = (e, id) => {
@@ -63,9 +69,15 @@ class Words extends Component {
 		dispatch(deleteWordAction(id))
 	}
 
+	handleEditClose = () => {
+		this.setState({
+			editMode: false
+		})
+	}
+
 	render() {
 		const {classes, words} = this.props;
-		const {headers} = this.state;
+		const {headers, wordToEdit, editMode} = this.state;
 		return (
 				<div className={classes.root}>
 					{words.length > 0 ? (
@@ -104,6 +116,10 @@ class Words extends Component {
 										})}
 									</TableBody>
 								</Table>
+
+								{editMode &&
+									<AddWord update={wordToEdit} handleClose={this.handleEditClose} />
+								}
 							</Paper>
 					) : (
 							<Card className={classes.card}>
