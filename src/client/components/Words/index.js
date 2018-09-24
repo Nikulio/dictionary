@@ -18,7 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {Link} from "react-router-dom";
-
+import IconButton from '@material-ui/core/IconButton';
 import AddWord from "../../components/AddWord";
 import {deleteWordAction, editWordAction} from "../../actions";
 import image from "../../../../images/not_found.jpg";
@@ -38,13 +38,17 @@ const styles = theme => ({
 		maxWidth: 345,
 		margin: "0 auto"
 	},
+	link: {
+		display: "flex",
+		textDecoration: "none"
+	},
 	media: {
 		height: 200,
 	},
 	button: {
 		margin: "0 auto",
 		textDecoration: "none"
-	}
+	},
 });
 
 class Words extends Component {
@@ -102,13 +106,21 @@ class Words extends Component {
 														<TableCell>{row.language}</TableCell>
 														<TableCell>{row.to}</TableCell>
 														<TableCell>
-															<Link to="/edit" onClick={(e) => this.editHandle(e, row._id)}>
-																<EditIcon />
+															<Link to="/edit"
+															      className={classes.link}
+															      onClick={(e) => this.editHandle(e, row._id)}>
+																<IconButton aria-label="Edit" color="primary" className={classes.button}>
+																	<EditIcon fontSize="small"/>
+																</IconButton>
 															</Link>
 														</TableCell>
 														<TableCell>
-															<Link to="/delete" onClick={(e) => this.deleteHandle(e, row._id)}>
-																<DeleteIcon />
+															<Link to="/delete"
+															      className={classes.link}
+															      onClick={(e) => this.deleteHandle(e, row._id)}>
+																<IconButton aria-label="Delete" color="secondary" className={classes.button}>
+																	<DeleteIcon fontSize="small"/>
+																</IconButton>
 															</Link>
 														</TableCell>
 													</TableRow>
@@ -118,7 +130,7 @@ class Words extends Component {
 								</Table>
 
 								{editMode &&
-									<AddWord update={wordToEdit} handleClose={this.handleEditClose} />
+								<AddWord update={wordToEdit} handleClose={this.handleEditClose}/>
 								}
 							</Paper>
 					) : (
