@@ -7,12 +7,16 @@ import Home from "../Home";
 import Auth from "../Auth";
 import Dictionaries from "../Dictionaries";
 import Dictionary from "../Dictionary";
+import Preload from "../Preload";
+import Error from "../Error";
 
 class App extends Component {
 	render() {
 		return (
 			<div className="app">
 				<Header />
+				<Preload />
+				<Error />
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/add-word" component={AddWord} />

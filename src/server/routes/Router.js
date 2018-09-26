@@ -7,12 +7,17 @@ const buildPath = path.join(__dirname, "../../../dist/index.html");
 Router.route("/add-word").post((req, res) => {
 	WordSchema.create(req.body).then((data) => {
 		res.send(data);
+	}, err => {
+		res.status(404).send(err)
 	});
 });
+
 
 Router.route("/get-words").get((req, res) => {
 	WordSchema.find().then((data) => {
 		res.send(data);
+	}, err => {
+		res.status(404).send(err)
 	});
 });
 
@@ -22,6 +27,8 @@ Router.route("/get-dictionaries").get((req, res) => {
 		const langArr = data.map(item => item.language);
 		const arr = new Set(langArr);
 		res.send(Array.from(arr));
+	}, err => {
+		res.status(404).send(err)
 	});
 });
 
@@ -30,12 +37,16 @@ Router.route("/get-words-by-dict").post((req, res) => {
 		const wordsArr = data.filter(item => item.language === req.body.language)
 		const arr = new Set(wordsArr);
 		res.send(Array.from(arr));
+	}, err => {
+		res.status(404).send(err)
 	});
 });
 
 Router.route("/delete-word/:id").delete((req, res) => {
 	WordSchema.remove({_id: req.params.id}).then((data) => {
 		res.send(data);
+	}, err => {
+		res.status(404).send(err)
 	});
 });
 
@@ -47,6 +58,8 @@ Router.route("/update-word").put((req, res) => {
 		word.save().then(updated => {
 			res.send(updated)
 		})
+	}, err => {
+		res.status(404).send(err)
 	})
 });
 

@@ -74,9 +74,15 @@ export const editWordAction = (data, id) => async dispatch => {
 	}
 };
 
+export const showPreloader = status => ({
+	type: types.SHOW_PRELOADER,
+	payload: status
+})
 
-
-
+export const showError = ({message}) => ({
+	type: types.SHOW_ERROR,
+	payload: message
+})
 
 
 

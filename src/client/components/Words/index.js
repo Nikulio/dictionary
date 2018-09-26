@@ -19,9 +19,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {Link} from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
+
 import AddWord from "../../components/AddWord";
-import {deleteWordAction, editWordAction} from "../../actions";
+import {deleteWordAction} from "../../actions";
 import image from "../../../../images/not_found.jpg";
+import style from "./Words.css";
 
 const styles = theme => ({
 	root: {
@@ -48,7 +50,7 @@ const styles = theme => ({
 	button: {
 		margin: "0 auto",
 		textDecoration: "none"
-	},
+	}
 });
 
 class Words extends Component {
@@ -101,7 +103,7 @@ class Words extends Component {
 									<TableBody>
 										{words && words.map(row => {
 											return (
-													<TableRow key={row._id}>
+													<TableRow key={row._id} className={style.row}>
 														<TableCell>{row.from}</TableCell>
 														<TableCell>{row.language}</TableCell>
 														<TableCell>{row.to}</TableCell>
