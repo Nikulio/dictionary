@@ -6,13 +6,21 @@ import {DELETE_WORD_SUCCESS} from "./types";
 export const addWordAction = (payload) => async dispatch => {
 	const res = await configAxios.post("/add-word", payload);
 	if (res.status === 200) {
-		history.push("/");
 		dispatch({
 			type: types.ADD_WORD_SUCCESS,
 			payload: res.data
 		})
 	}
 };
+
+export const addRecentLanguageAction = lang => {
+	return ({
+		type: types.RECENT_LANGUAGE_SUCCESS,
+		payload: lang
+	})
+}
+
+
 
 export const fetchAllWordsAction = () => async dispatch => {
 	const res = await configAxios.get("/get-words");
@@ -77,7 +85,7 @@ export const editWordAction = (data, id) => async dispatch => {
 export const showPreloader = status => ({
 	type: types.SHOW_PRELOADER,
 	payload: status
-})
+});
 
 export const showError = ({message}) => ({
 	type: types.SHOW_ERROR,

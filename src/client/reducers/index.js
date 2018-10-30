@@ -5,6 +5,7 @@ import getWordsReducer from "./getWordsReducer";
 import dictionariesReducer from "./dictionariesReducer";
 import preloadReducer from "./preloadReducer";
 import errorReducer from "./errorReducer";
+import recentLanguageReducer from "./recentLanguageReducer";
 
 export default combineReducers({
 	form : form,
@@ -12,5 +13,6 @@ export default combineReducers({
 	words: getWordsReducer,
 	preload: preloadReducer,
 	error: errorReducer,
+	recentLanguage: recentLanguageReducer,
 	dictionaries: dictionariesReducer
 })

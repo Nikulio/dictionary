@@ -50,6 +50,9 @@ const styles = theme => ({
 	button: {
 		margin: "0 auto",
 		textDecoration: "none"
+	},
+	actions: {
+		padding: "0 0 24px 0"
 	}
 });
 
@@ -143,14 +146,14 @@ class Words extends Component {
 										title="Contemplative Reptile"
 								/>
 								<CardContent>
-									<Typography gutterBottom variant="headline" component="h2" align="center">
+									<Typography variant="headline" component="h2" align="center">
 										No words :(
 									</Typography>
 									<Typography component="p" align="center">
 										Create your first one!
 									</Typography>
 								</CardContent>
-								<CardActions>
+								<CardActions className={classes.actions}>
 									<Link to="/add-word" className={classes.button}>
 										<Button size="small" color="secondary" variant="contained">
 											Create your's first one!

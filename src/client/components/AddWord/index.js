@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
-import {addWordAction, editWordAction} from "../../actions";
+import {addWordAction, editWordAction, addRecentLanguageAction} from "../../actions";
 
 const styles = theme => ({
 	container: {
@@ -51,13 +51,16 @@ class AddWord extends Component {
 
 	state = {
 		from: "",
-		language: "",
+		language: this.props.recentLanguage || "",
 		to: ""
 	};
 
 	handleChange = name => event => {
+		const {dispatch} = this.props;
 		this.setState({
 			[name]: event.target.value,
+		}, () => {
+			dispatch(addRecentLanguageAction(this.state.language));
 		});
 	};
 
@@ -74,7 +77,7 @@ class AddWord extends Component {
 	};
 
 	submit = () => {
-		const {dispatch, update, handleClose} = this.props;
+		const {dispatch, update, handleClose, recentLanguage} = this.props;
 		if (update && update.length > 0) {
 			dispatch(editWordAction(this.state, update));
 			handleClose();
@@ -83,7 +86,7 @@ class AddWord extends Component {
 		}
 		this.setState({
 			from: "",
-			language: "",
+			language: recentLanguage,
 			to: ""
 		});
 	};
@@ -91,6 +94,7 @@ class AddWord extends Component {
 	render() {
 		const {classes} = this.props;
 		const {from, to, language} = this.state;
+
 		return (
 			<form className={classes.container} noValidate autoComplete="off">
 				<TextField
@@ -107,7 +111,7 @@ class AddWord extends Component {
 					select
 					label="Language"
 					className={classes.textField}
-					value={this.state.language}
+					value={language}
 					onChange={this.handleChange('language')}
 					SelectProps={{
 						MenuProps: {
@@ -147,7 +151,7 @@ class AddWord extends Component {
 }
 
 const mapStateToProps = (store) => ({
-	store: store
+	recentLanguage: store.recentLanguage
 })
 
 export default withRouter(connect(mapStateToProps)(withStyles(styles)(AddWord)));
